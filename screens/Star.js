@@ -27,9 +27,17 @@ export default class StarScren extends Component {
   }
 
   getStarDetails = (name) => {
-      /*write code to fetch data from your flask API.
-        Make sure to use name argument.
-        Store the fetched data in the state named "data"*/
+      const { url } = this.state;
+    axios
+      .get(url)
+      .then((response) => {
+        this.setState({
+          datas: response.data.data,
+        });
+      })
+      .catch((error) => {
+        Alert.alert(error.message);
+      });
   
   };
 
